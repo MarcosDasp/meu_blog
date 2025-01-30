@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    height: 100%;
+}
+
+/* Estilo geral */
+body {
+    font-family: "Poppins", serif;
+    background-color: #121212;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-height: 100vh;
+    height: auto; /* Permite que o body cresça com o conteúdo */
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    height: 60px;
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.navbar h1 {
+    font-size: 1.5em;
+    color: #6200ea;
+    /* animation: colorAnimation 4s infinite linear; */
+}
+
+/* @keyframes colorAnimation {
+    0% { color: #ff0000; } 
+    25% { color: #ff8c00; }
+    50% { color: #ffff00; } 
+    75% { color: #00ff00; } 
+    100% { color: #ff0000; } 
+} */
+
+.navbar button{
+    color: white;
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.navbar button:hover{
+    cursor: pointer;
+}
+
+/* Overlay - escurece o conteúdo atrás da janela */
+.overlay {
+    display: none; /* Inicialmente escondido */
+    position: fixed; /* Fixa na tela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Cor escura com transparência */
+    z-index: 999; /* Fica acima de todos os outros conteúdos */
+}
+
+/* Janela do contêiner */
+.account-container {
+    display: none; /* Inicialmente escondido */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra a janela */
+    background-color: #2a2a2a; /* Cor mais escura para o contêiner */
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.75); /* Sombra */
+    border-radius: 10px; /* Borda arredondada */
+    color: #fff;
+    width: 350px;
+    max-width: 90%;
+    border: 2px solid #6200ea; /* Borda contrastante */
+    z-index: 1000; /* Fica acima do overlay */
+}
+
+.account-container h2, .account-container p{
+    margin-bottom: 10px;
+}
+
+.account-container button{
+    padding: 10px;
+    margin-top: 10px;
+    border: solid 2px #6200ea;
+    border-radius: 5px;
+    transition: border 0.3s;
+    background-color: transparent;
+}
+
+.account-container button a{
+    color: #CCC;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.account-container button:hover{
+    border: solid 2px #3700b3;
+}
+
+.nome-de-usuario{
+    text-transform: capitalize;
+}
+
+/* Quando o contêiner estiver visível */
+.show-account {
+    display: block !important;
+}
+
+.show-overlay {
+    display: block !important;
+}
+
+/* Contêiner principal */
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Garante que os elementos se ajustem conforme necessário */
+    width: 80%;
+    max-width: 1000px;
+    min-height: auto; /* Permite que a altura seja definida pelo conteúdo */
+    margin: 50px 0 50px 0;
+    background-color: #333;
+    border-radius: 10px;
+}
+
+/* Metade esquerda (conteúdo do post) */
+.post-content {
+    flex: 1;
+    padding: 35px;
+    box-shadow: -10px 0 0 -7px rgba(0,0,0,0.75) inset;
+}
+ 
+.post-content h1{
+    margin: 15px 0 15px 0;
+
+    font-size: 2em;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+#data_publicacao{
+    font-size: 0.8em;
+    color: #CCC;
+}
+
+/* Metade direita dividida */
+.right-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 400px;
+}
+
+/* Lista de posts */
+.post-list {
+    flex: 1;
+    padding: 35px;
+    background-color: #333;
+    box-shadow: 10px 0px 0 -7px rgba(0,0,0,0.75) inset;
+}
+
+.post-list h2{
+    margin-bottom: 15px;
+}
+
+.post-list li{
+    margin-bottom: 15px;
+    list-style: none;
+}
+
+.post-list li a{
+    text-decoration: none;
+    text-transform: capitalize;
+
+    color: #CCC;
+    font-weight: 500;
+    
+    display: block; /* Faz o link ocupar toda a largura disponível */
+    width: 90%; /* Define um tamanho máximo */
+    white-space: nowrap; /* Impede que o texto quebre a linha */
+    overflow: hidden; /* Oculta o conteúdo excedente */
+    text-overflow: ellipsis; /* Adiciona "..." no final */
+
+    padding-bottom:2px; /*the space for the gradient*/
+
+    background: linear-gradient(#CCC,#CCC) center bottom; /*OR bottom right OR bottom left*/
+    
+    background-size: 0% 2px; /*width:0% height:2px*/
+    background-repeat:no-repeat; /* Don't repeat !!*/
+    transition: all 0.45s;
+}
+
+.post-list li a:hover{
+    background-size: 100% 2px; /*width:100% height:2px*/
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        width: 90%;
+    }
+
+    .right-section {
+        flex-direction: row;
+    }
+
+    .post-content,
+    .right-section {
+        width: 100%;
+        box-shadow: 0 -10px 0 -7px rgba(0,0,0,0.75) inset;
+    }
+
+    .post-list {
+        flex: 1;
+        box-shadow: 0 -10px 0 -7px rgba(0,0,0,0.75) inset;
+    }
+}
+
+@media (max-width: 600px) {
+    .right-section {
+        flex-direction: column;
+    }
+
+    .post-list {
+        width: 100%;
+    }
+}

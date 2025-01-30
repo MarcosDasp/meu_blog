@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Post</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'blog/criar_post.css' %}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <h1><a href="{% url 'index' %}">MRCSDSP</a></h1>
+    </nav>
+
+    <div class="container">
+        <h2>Criar Novo Post</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Renderiza os campos do formulário -->
+            <button type="submit" class="btn btn-primary">Publicar</button>
+        </form>
+    </div>
+
+</body>
+</html>

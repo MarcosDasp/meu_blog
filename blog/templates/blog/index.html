@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mrcsdsp</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'blog/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1>MRCSDSP</h1>
+        <button id="accountButton"><i class="fa fa-user" aria-hidden="true"></i></button>
+    </nav>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="account-container" id="accountContainer">
+        {% if user.is_authenticated %}
+            <h2>Conta</h2>
+            <p>Nome: <span class="nome-de-usuario">{{ request.user.get_full_name|default:request.user.username }}</span></p>
+            <button><a href="{% url 'criar_post' %}">Criar Post</a></button>
+            <button><a href="{% url 'logout' %}">Logout</a></button>
+        {% else %}
+            <button><a href="{% url 'login' %}">Login</a></button>
+    {% endif %}
+    </div>
+
+    <!-- Contêiner principal -->
+    <div class="container">
+        <!-- Metade esquerda (conteúdo do post) -->
+        <div class="post-content">
+            {% if posts %}
+                <p id="data_publicacao">Publicado em: {{ posts.0.data_publicacao|date:"d/m/Y" }} <br> Por: {{ posts.0.autor }} </p>
+                <h1 id="post-titulo">{{ posts.0.titulo }}</h1>
+                <p id="post-conteudo">{{ posts.0.conteudo }}</p>
+            {% else %}
+                <h1>Sem posts disponíveis</h1>
+                <p>Publique o primeiro agora.</p>
+            {% endif %}
+        </div>
+
+        <!-- Metade direita dividida -->
+        <div class="right-section">
+            <!-- Lista de posts -->
+            <div class="post-list">
+                <h2>Lista de Posts</h2>
+                <ul>
+                    {% for post in posts %}
+                        <li><a href="javascript:void(0);" onclick="atualizarPost('{{ post.titulo }}', '{{ post.conteudo }}')">{{ post.titulo }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'blog/script.js' %}"></script>
+</body>
+</html>
